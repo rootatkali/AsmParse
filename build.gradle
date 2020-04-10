@@ -1,0 +1,15 @@
+plugins {
+  id 'java'
+}
+
+group 'de.faceco'
+version '1.0-SNAPSHOT'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  testImplementation('junit:junit:4.12')
+  implementation('com.google.guava:guava:28.2-jre')
+}
