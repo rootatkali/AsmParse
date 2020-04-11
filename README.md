@@ -16,15 +16,12 @@ add ax,bx
 List<Statement> statements = Parser.parse(code);
 ```
 
-After you parsed the statements, you should interpret each on their own.  
-First, you have to convert a statement to a list of Tokens, using `Parser.tokenize()`.  
-Then, interpret each list of tokens using the `Interpreter` class.
+After you parsed the statements, you should interpret each on their own, using the `Interpreter` class:
 
 ```java
 boolean verbose = true; // If verbose is set to true, the interpreter will print every statement in human-readable format
 for (Statement s : statements) {
-  List<Token> tokens = Parser.tokenize(s);
-  Interpreter.interpret(tokens, verbose); // If there's a PRINT interrupt (int 21h [ah = 2h|9h]), it will print to STDOUT
+  Interpreter.interpret(s, verbose); // If there's a PRINT interrupt (int 21h [ah = 2h|9h]), it will print to STDOUT
   System.out.println(Register.AX); // The interpreter updates the registers according to the functions.
   Register.printAll(); // Or you can print all of the registers, similarly to TD.
 }
