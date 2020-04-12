@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation('junit:junit:4.12')
-  implementation('com.google.guava:guava:28.2-jre')
+  testImplementation('junit:junit:4.12') // Testing library
+  implementation('org.jetbrains:annotations:19.0.0') // Annotations library
+  implementation('com.google.guava:guava:28.2-jre') // Library for many functions in Java
 }

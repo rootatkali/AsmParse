@@ -1,5 +1,8 @@
 package de.faceco.assembly.components;
 
+import com.google.common.primitives.Shorts;
+import com.google.common.primitives.UnsignedBytes;
+
 public class Register {
   private short value;
   private final boolean canDivide;
@@ -54,7 +57,39 @@ public class Register {
     return value;
   }
   
+  public byte h() {
+    if (canDivide) {
+      return Shorts.toByteArray(value)[0];
+    } else {
+      throw new RuntimeException("Register cannot divide");
+    }
+  }
   
+  public byte l() {
+    if (canDivide) {
+      return Shorts.toByteArray(value)[1];
+    } else {
+      throw new RuntimeException("Register cannot divide");
+    }
+  }
+  
+  public Register setH(byte val) {
+    if (canDivide) {
+      value = (short) (UnsignedBytes.toInt(val) * 256 + l());
+    } else {
+      throw new RuntimeException("Register cannot divide");
+    }
+    return this;
+  }
+  
+  public Register setL(byte val) {
+    if (canDivide) {
+      value = (short) (UnsignedBytes.toInt(val) + h() * 256);
+    } else {
+      throw new RuntimeException("Register cannot divide");
+    }
+    return this;
+  }
   
   @Override
   public boolean equals(Object o) {
